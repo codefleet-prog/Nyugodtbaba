@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kosár - Nyugodtbaba</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar navbar-scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">Nyugodtbaba</a>
+            <button class="mobile-menu-toggle" aria-label="Menü">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links">
+                <a href="index.html#tartalom">Tartalom</a>
+                <a href="index.html#arak">Árak</a>
+                <a href="index.html#kapcsolat">Kapcsolat</a>
+                <a href="cart.html" class="cart-icon" aria-label="Kosár">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="fade-in-up">Kosár</h1>
+                <a href="index.html#arak" class="back-link fade-in-up delay-1">← Vissza a csomagokhoz</a>
+            </div>
+        </section>
+
+        <section class="cart-section light-bg" style="min-height: 60vh;">
+            <div class="container">
+                <!-- Empty cart message (hidden by default) -->
+                <div id="empty-cart" class="empty-cart-message" style="display: none;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-muted); margin-bottom: 1rem;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <h2>A kosarad üres</h2>
+                    <p>Nézd meg az útmutatóinkat és válassz a csomagok közül.</p>
+                    <a href="index.html#arak" class="btn btn-primary mt-4">Vissza a csomagokhoz</a>
+                </div>
+
+                <!-- Cart with items -->
+                <div id="cart-content" class="shop-layout">
+                    <!-- Cart Items List -->
+                    <div class="shop-main fade-in-up delay-1">
+                        <!-- Bundle upsell banner (shown conditionally by JS) -->
+                        <div id="bundle-upsell" class="bundle-upsell" style="display: none;">
+                            <div class="bundle-upsell-icon">💡</div>
+                            <div class="bundle-upsell-text">
+                                <strong>Spórolj 1 990 Ft-ot!</strong>
+                                <span>Mindkét ebook a kosaradban van. Válaszd inkább a <em>Teljes nyugalom csomag</em>-ot kedvezményes áron!</span>
+                            </div>
+                            <button class="btn btn-primary bundle-upsell-btn" onclick="switchToBundle()">Csomagra váltás</button>
+                        </div>
+
+                        <ul class="cart-items" id="cart-items-container">
+                            <!-- Rendered dynamically by JS -->
+                        </ul>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="shop-sidebar fade-in-up delay-2">
+                        <h3>Összegzés</h3>
+                        <div class="summary-row">
+                            <span>Részösszeg</span>
+                            <span id="subtotal">0 Ft</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Kedvezmény</span>
+                            <span>0 Ft</span>
+                        </div>
+                        <div class="summary-total summary-row">
+                            <span>Fizetendő</span>
+                            <span id="total">0 Ft</span>
+                        </div>
+                        <a href="checkout.html" id="checkout-btn" class="btn btn-primary w-100 mt-4">Tovább a pénztárhoz</a>
+                        <p class="text-center mt-4" style="font-size: 0.85rem; color: var(--color-text-muted);">Biztonságos fizetés a SimplePay rendszerén keresztül.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-info">
+                <h3>Nyugodtbaba</h3>
+                <p>Támogató útmutatók a kiegyensúlyozottabb családi mindennapokért.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Linkek</h4>
+                <ul>
+                    <li><a href="index.html#tartalom">Tartalom</a></li>
+                    <li><a href="index.html#arak">Árak</a></li>
+                    <li><a href="index.html#kapcsolat">Kapcsolat</a></li>
+                </ul>
+            </div>
+            <div class="footer-legal">
+                <h4>Jogi információk</h4>
+                <ul>
+                    <li><a href="#">ÁSZF</a></li>
+                    <li><a href="#">Adatkezelési tájékoztató</a></li>
+                    <li><a href="#">Impresszum</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Nyugodtbaba. Minden jog fenntartva.</p>
+        </div>
+    </footer>
+
+    <script src="cart-store.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function renderCart() {
+            const items = NyugodtbabaCart.getCartWithProducts();
+            const container = document.getElementById('cart-items-container');
+            const emptyMsg = document.getElementById('empty-cart');
+            const cartContent = document.getElementById('cart-content');
+            const bundleUpsell = document.getElementById('bundle-upsell');
+
+            if (items.length === 0) {
+                emptyMsg.style.display = 'flex';
+                cartContent.style.display = 'none';
+                return;
+            }
+
+            emptyMsg.style.display = 'none';
+            cartContent.style.display = 'grid';
+
+            // Check if both individual ebooks are in the cart (but NOT the bundle)
+            const hasBook1 = items.some(i => i.id === 'nyugodt-baba');
+            const hasBook2 = items.some(i => i.id === 'nyugodt-estek');
+            const hasBundle = items.some(i => i.id === 'teljes-csomag');
+
+            if (hasBook1 && hasBook2 && !hasBundle) {
+                bundleUpsell.style.display = 'flex';
+            } else {
+                bundleUpsell.style.display = 'none';
+            }
+
+            container.innerHTML = items.map(item => `
+                <li class="cart-item" data-id="${item.id}">
+                    <img src="${item.product.image}" alt="${item.product.name}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.product.name}</div>
+                        <div class="cart-item-price">${NyugodtbabaCart.formatPrice(item.product.price)}</div>
+                    </div>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="changeQty('${item.id}', -1)" aria-label="Csökkentés">−</button>
+                        <span class="qty-value">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty('${item.id}', 1)" aria-label="Növelés">+</button>
+                    </div>
+                    <div class="cart-item-line-total">
+                        ${NyugodtbabaCart.formatPrice(item.product.price * item.qty)}
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart('${item.id}')" aria-label="Eltávolítás">×</button>
+                </li>
+            `).join('');
+
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const total = NyugodtbabaCart.getTotal();
+            document.getElementById('subtotal').textContent = NyugodtbabaCart.formatPrice(total);
+            document.getElementById('total').textContent = NyugodtbabaCart.formatPrice(total);
+        }
+
+        function changeQty(productId, delta) {
+            const cart = NyugodtbabaCart.getCart();
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                NyugodtbabaCart.updateQty(productId, item.qty + delta);
+                renderCart();
+            }
+        }
+
+        function removeFromCart(productId) {
+            NyugodtbabaCart.removeItem(productId);
+            renderCart();
+        }
+
+        function switchToBundle() {
+            NyugodtbabaCart.removeItem('nyugodt-baba');
+            NyugodtbabaCart.removeItem('nyugodt-estek');
+            NyugodtbabaCart.addItem('teljes-csomag');
+            renderCart();
+        }
+
+        // Initial render
+        renderCart();
+    </script>
+</body>
+</html>
