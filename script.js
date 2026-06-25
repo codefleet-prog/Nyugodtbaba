@@ -22,24 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Intersection Observer for scroll animations
-    const animationObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    });
-
-    // Elements to animate
-    const elementsToAnimate = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .fade-in');
-    
-    elementsToAnimate.forEach(el => {
-        animationObserver.observe(el);
-    });
+    // Intersection Observer for scroll animations is now initialized globally
+    // so it can be called after the loader disappears.
 
     // Mobile menu toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -95,3 +79,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Function to initialize scroll animations
+function initScrollAnimations() {
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    const elementsToAnimate = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .fade-in');
+    
+    elementsToAnimate.forEach(el => {
+        animationObserver.observe(el);
+    });
+}
+
+// Page Loader
+const loader = document.getElementById('page-loader');
+if (loader) {
+    // Hide loader exactly 1.5 seconds after DOM parses, 
+    // avoiding issues where window.onload gets stuck waiting for slow images.
+    setTimeout(() => {
+        loader.classList.add('loaded');
+        // Trigger animations right as the loader starts fading out
+        initScrollAnimations();
+        
+        setTimeout(() => {
+            loader.remove();
+        }, 600);
+    }, 1500);
+} else {
+    // If there's no loader on the page, start animations when DOM is ready
+    document.addEventListener('DOMContentLoaded', initScrollAnimations);
+}
