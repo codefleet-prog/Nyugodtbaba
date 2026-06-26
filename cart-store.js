@@ -12,7 +12,7 @@ const NyugodtbabaCart = (() => {
             name: 'Nyugodt baba, nyugodt anya',
             price: 4990,
             oldPrice: 5988,
-            image: 'assets/product_bundle.png',
+            image: 'assets/product_baba.png',
             desc: 'Gyakorlati kísérő az első hetekhez.'
         },
         'nyugodt-estek': {
@@ -20,7 +20,7 @@ const NyugodtbabaCart = (() => {
             name: 'Nyugodt esték, jobb alvás',
             price: 5990,
             oldPrice: 7188,
-            image: 'assets/product_bundle.png',
+            image: 'assets/product_estek.png',
             desc: 'Haladóbb altatási és esti rutin útmutató.'
         },
         'teljes-csomag': {
@@ -28,7 +28,7 @@ const NyugodtbabaCart = (() => {
             name: 'Teljes nyugalom csomag',
             price: 8990,
             oldPrice: 10788,
-            image: 'assets/product_bundle.png',
+            image: 'assets/product_csomag.png',
             desc: 'Mindkét digitális útmutató egy csomagban.'
         }
     };

@@ -1198,3 +1198,75 @@ img {
     0% { opacity: 0.5; }
     100% { opacity: 1; }
 }
+
+/* --- Excerpts Section --- */
+.excerpts-container {
+    margin-top: var(--spacing-xl);
+}
+
+.excerpts-container h3 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+}
+
+.excerpts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    align-items: stretch;
+}
+
+@media (max-width: 768px) {
+    .excerpts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.excerpt-card {
+    background-color: var(--color-light-bg);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    transition: var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+
+.excerpt-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
+}
+
+.excerpt-book-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+.excerpt-quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+    position: relative;
+    padding-left: 1.5rem;
+    flex-grow: 1;
+}
+
+.excerpt-quote::before {
+    content: '"';
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--color-accent);
+    opacity: 0.2;
+    position: absolute;
+    top: -1.5rem;
+    left: -0.5rem;
+    line-height: 1;
+}
